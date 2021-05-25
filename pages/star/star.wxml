@@ -1,0 +1,64 @@
+<!-- <view class="container">
+    <swiper vertical="true" easing-function="easeOutCubic" bindchange="itemChange">
+        <block wx:for="{{background}}" wx:key="class">
+            <swiper-item>
+                <image src="{{item.img}}" />
+                <view class="text_area">
+                    <view animation="{{text_border}}" class="text_border"></view>
+                    <view class="text_wrap">
+                        <text>{{text}}</text>
+                    </view>
+                </view>
+                <view class="operation">
+                    <view animation="{{heart}}" class="collection_wrap" bind:tap="opCollection">
+                        <image wx:if="{{!isCollection}}" src="../../heart.svg" />
+                        <image wx:else src="../../heart-fill.svg" />
+                    </view>
+                    <view animation="{{edit}}" class="edit_wrap" bind:tap="opEdit">
+                        <image src="../../edit.svg" />
+                    </view>
+                    <view animation="{{share}}" class="share_wrap" bind:tap="opShare">
+                        <image src="../../share.svg" />
+                    </view>
+                </view>
+                <view class="music_wrap">
+                    <view animation="{{music_line1}}" class="music_line1"></view>
+                    <image animation="{{rocket}}" class="rocket" src="../../rocket.svg" />
+                    <view animation="{{music_line2}}" class="music_line2"></view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+</view> -->
+<view class="container">
+    <swiper vertical="true" easing-function="easeOutCubic" bindchange="itemChange">
+        <block wx:for="{{stars}}" wx:key="stars_id">
+            <swiper-item>
+                <image src="{{item.star_pic}}" />
+                <view class="text_area">
+                    <view animation="{{text_border}}" class="text_border"></view>
+                    <view class="text_wrap">
+                        <text>{{text}}</text>
+                    </view>
+                </view>
+                <view class="operation">
+                    <view animation="{{heart}}" class="collection_wrap" bind:tap="opCollection">
+                        <image wx:if="{{!isCollection}}" src="../../heart.svg" />
+                        <image wx:else src="../../heart-fill.svg" />
+                    </view>
+                    <view animation="{{edit}}" class="edit_wrap" bind:tap="opEdit">
+                        <image src="../../edit.svg" />
+                    </view>
+                    <view animation="{{share}}" class="share_wrap" bind:tap="opShare">
+                        <image src="../../share.svg" />
+                    </view>
+                </view>
+                <view class="music_wrap">
+                    <view animation="{{music_line1}}" class="music_line1"></view>
+                    <image animation="{{rocket}}" class="rocket" src="../../rocket.svg" />
+                    <view animation="{{music_line2}}" class="music_line2"></view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>

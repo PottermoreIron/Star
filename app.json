@@ -1,0 +1,18 @@
+{
+  "pages":[
+    "pages/star/star", 
+    "pages/home/home",
+    "pages/constellation/constellation"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Talking to the STAR",
+    "navigationBarTextStyle":"black",
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": ["audio"]
+}

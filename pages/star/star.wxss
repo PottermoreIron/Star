@@ -1,0 +1,121 @@
+swiper {
+    width: 100%;
+    height: 100%;
+}
+
+swiper-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+
+image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.text_area {
+    width: 500rpx;
+    height: 600rpx;
+    position: absolute;
+    top: 12%;
+    padding: 50rpx;
+    line-height: 80rpx;
+    font-style: italic;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.text_border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -0rpx;
+    top: -0rpx;
+    border: solid 1rpx white;
+    opacity: 0;
+}
+
+
+
+.operation {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    top: 900rpx;
+    width: 100%;
+    height: 6%;
+}
+
+.collection_wrap {
+    position: absolute;
+    width: 11%;
+    height: 100%;
+    left: -10%;
+}
+
+.edit_wrap {
+    position: absolute;
+    width: 11%;
+    height: 100%;
+    opacity: 0;
+}
+
+.share_wrap {
+    position: absolute;
+    width: 11%;
+    height: 100%;
+    right: -10%;
+}
+
+.music_wrap {
+    position: absolute;
+    bottom: 100rpx;
+    width: 100%;
+    height: 7%;
+    display: flex;
+    align-items: center;
+}
+
+.music_line1 {
+    position: absolute;
+    width: 40%;
+    left: -40%;
+    height: 2rpx;
+    background-color: white;
+}
+
+.rocket {
+    opacity: 0;
+    animation: rocket 3s linear infinite
+}
+
+@keyframes rocket {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.music_line2 {
+    position: absolute;
+    width: 40%;
+    right: -40%;
+    height: 2rpx;
+    background-color: white;
+}
