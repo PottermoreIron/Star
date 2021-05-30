@@ -38,7 +38,8 @@
                 <view class="text_area">
                     <view animation="{{text_border}}" class="text_border"></view>
                     <view class="text_wrap">
-                        <text>{{text}}</text>
+                        <text wx:if="{{isText}}">{{text}}</text>
+                        <text wx:else>{{description}}</text>
                     </view>
                 </view>
                 <view class="operation">
@@ -53,10 +54,22 @@
                         <image src="../../share.svg" />
                     </view>
                 </view>
+                <view animation="{{myButton}}" class="more">
+                    <button plain="{{true}}" bind:tap="changeText">{{buttonText}}</button>
+                </view>
                 <view class="music_wrap">
                     <view animation="{{music_line1}}" class="music_line1"></view>
                     <image animation="{{rocket}}" class="rocket" src="../../rocket.svg" />
                     <view animation="{{music_line2}}" class="music_line2"></view>
+                    <view class="song_info" animation="{{songInfo}}">
+                        <text class="song_aut">{{songAuthor}}</text>
+                        <text class="song_name" decode="{{true}}">&nbsp;{{songName}}</text>
+                    </view>
+                </view>
+                <view class="canvas_box" hidden="{{!isCanvasShow}}">
+                    <image src="../../close.svg" class="close" bind:tap="closeCanvas" />
+                    <canvas style="width:{{phoneW/1.5}}px;height:{{phoneH/1.5}}px;" canvas-id="poster_{{index}}" />
+                    <button class="save_poster" plain="{{true}}" bind:tap="savePoster">保存</button>
                 </view>
             </swiper-item>
         </block>

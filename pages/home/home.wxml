@@ -2,6 +2,7 @@
     <swiper>
         <swiper-item>
             <view class="to_page">
+                <image class="bkg_img" src="../../bkg.jpg" />
                 <view class="think_container">
                     <view class="think" bindtap="goConstellation">
                         <text class="think_test">随想</text>

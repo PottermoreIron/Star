@@ -48,6 +48,22 @@ image {
 }
 
 
+.more {
+    position: absolute;
+    bottom: 17%;
+    width: 100%;
+    opacity: 0;
+}
+
+.more button {
+    width: 30% !important;
+    height: 2% !important;
+    color: white !important;
+    border-color: white !important;
+    font-weight: lighter !important;
+    font-size: medium !important;
+    padding: 15rpx 18rpx 15rpx 18rpx;
+}
 
 .operation {
     display: flex;
@@ -118,4 +134,49 @@ image {
     right: -40%;
     height: 2rpx;
     background-color: white;
+}
+
+.song_info {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    bottom: 1.5%;
+    opacity: 0;
+    font-size: small;
+}
+
+
+.canvas_box {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.close {
+    position: absolute;
+    top: 3%;
+    left: 5%;
+    width: 8%;
+    height: 18%;
+}
+
+.save_poster {
+    position: absolute;
+    bottom: 8%;
+}
+
+.save_poster {
+    color: white !important;
+    border-color: white !important;
+    width: 32% !important;
+    height: 6% !important;
+    line-height: 1;
 }

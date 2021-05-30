@@ -70,7 +70,46 @@ const setRight = function (that, time, param, right) {
     json[param] = animation.export()
     that.setData(json)
 }
+const startFlash = function (that, time, param) {
 
+    var count = 0;
+    let animation = wx.createAnimation({
+        duration: time, // 动画持续时间，单位 ms
+        timingFunction: 'ease-in-out', // 动画的效果
+        delay: 0, // 动画延迟时间，单位 ms
+        transformOrigin: '50% 50%' // 动画的中心点
+    });
+
+    let json = '{"' + param + '":""}'
+    json = JSON.parse(json)
+    setInterval(function () {
+
+        if (count % 2 == 0) {
+            animation.scale(3.5).step();
+        } else {
+            animation.scale(0.5).step();
+        }
+
+        json[param] = animation.export()
+        that.setData(json)
+        count++;
+        if (count == 1500) {
+            count = 0;
+        }
+    }.bind(that), 1500);
+}
+const stopFlash = function (that, time, param) {
+
+    // let animation = wx.createAnimation({
+    //     duration: time,
+    //     timingFunction: 'ease',
+    // });
+    // animation.opacity(1).step()
+    // let json = '{"' + param + '":""}'
+    // json = JSON.parse(json)
+    // json[param] = animation.export()
+    // that.setData(json)
+}
 module.exports = {
     fadeIn: fadeIn,
     stretchX: stretchX,
@@ -78,4 +117,6 @@ module.exports = {
     translateWidth: translateWidth,
     setLeft: setLeft,
     setRight: setRight,
+    startFlash: startFlash,
+    stopFlash: stopFlash,
 }

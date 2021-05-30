@@ -4,6 +4,29 @@ Page({
     },
     onLoad: function (options) {
         // 页面创建时执行
+        wx.login({
+            success(res) {
+                if (res.code) {
+                    //发起网络请求
+                    console.log(res.code)
+                    wx.request({
+                        url: 'https://dapeng.chat/cis',
+                        method: 'POST',
+                        header: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        data: {
+                            'jsCode': res.code
+                        },
+                        success(e) {
+                            console.log(e.data)
+                        }
+                    })
+                } else {
+                    console.log('登录失败！' + res.errMsg)
+                }
+            }
+        })
     },
     onShow: function () {
         // 页面出现在前台时执行

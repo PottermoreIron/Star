@@ -1,7 +1,10 @@
 {
   "pages":[
-    "pages/star/star", 
     "pages/home/home",
+    "pages/star/star", 
+    
+    
+    
     "pages/constellation/constellation"
     
   ],

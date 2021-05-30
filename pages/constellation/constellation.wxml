@@ -1,3 +1,563 @@
+<!-- <button bindtap="test">test</button> -->
 <view class="container">
-    <button bind:tap="test">test</button>
+    <view wx:if="{{loadOK==0}}">加载中</view>
+    <swiper wx:if="{{loadOK==1}}"  vertical="true" easing-function="easeOutCubic" bindtap="closeEverthing" bindchange="closeEverthing2" >
+        <block wx:for="{{constellaList}}" wx:key="id" wx:for-index="index">
+            <swiper-item>
+                <swiper easing-function="easeOutCubic" bindtap="closeEverthing" bindchange="closeEverthing">
+                    <block wx:for="{{item.constella_pic}}" wx:key="id" wx:for-item="newitem" wx:for-index="newindex">
+                        <swiper-item>
+                            <image class="{{(imgLoad[item.constella_id][newindex]==1) ? 'active': 'unactive'}}" src="{{newitem}}" lazy-load="true" bindload="imgOnload" id="{{item.constella_id+','+newindex}}" ></image>
+                            <image wx:if="{{imgLoad[item.constella_id][newindex]==0}}" src="{{ '../image/'+item.constella_id+(newindex==0?'L':'R')+'m.jpg'}}" lazy-load="true" ></image>
+                           
+                            <!-- 下面是描述框 -->
+                            <!-- textAreaIsOpen：点击星星时，textAreaIsOpen赋值为1，显示描述框 -->
+                            <!-- 之后点击其他地方，textAreaIsOpen赋值为0，隐藏对话框 -->
+                            <view wx:if="{{textAreaIsOpen}}" class="text_area">
+                                <view animation="{{text_border}}" class="text_border"></view>
+                                
+                                    <text>{{starName}}</text>
+                                    <text>\n</text>
+                                    <text>{{starDescrib}}</text>
+                                
+                            </view>
+
+                            <!-- 穷举出星星位置 -->
+                            <block wx:if="{{item.constella_id==1}}">
+                                <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=1)}}">
+                                    <image src="{{'../image/'+item.constella_id+'m.jpg'}}" ></image>
+                                </block> -->
+                                
+                                <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 38%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="1">
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                
+                                
+                                
+                                <view animation="{{click}}"  class="click-style" style="top:30%;left:58%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:60%;left:56%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="3">
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view> 
+                            </block>
+                            <block wx:elif="{{item.constella_id==2}}">
+                                
+                                <block wx:if="{{newindex==0}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Lm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:54.5%;left:45.5%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="5">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                </block>
+                                <block wx:elif="{{newindex==1}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Rm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:29.8%;left:35.6%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="4">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                    <view animation="{{click}}"  class="click-style" style="top:30%;left:59%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="4">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                    <view animation="{{click}}"  class="click-style" style="top:24.7%;left:50.5%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="4">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                    <view animation="{{click}}"  class="click-style" style="top:19%;left:55.6%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="4">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                    <view animation="{{click}}"  class="click-style" style="top:17.4%;left:63%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="4">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                    <view animation="{{click}}"  class="click-style" style="top:19.2%;left:70.2%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="4">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                    <view animation="{{click}}"  class="click-style" style="top:25.2%;left:69.7%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="4">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                    <view animation="{{click}}"  class="click-style" style="top:13%;left:78%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="4">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                </block>
+                            </block>
+                            <block wx:elif="{{item.constella_id==3}}">
+                                <block wx:if="{{newindex==0}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Lm.jpg'}}" ></image>
+                                    </block> -->
+                                    
+                                </block>
+                                <block wx:elif="{{newindex==1}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Rm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:43%;left:35.8%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="6">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                    <view animation="{{click}}"  class="click-style" style="top:48.8%;left:43.3%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="7">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view> 
+                                </block>
+
+                            </block>
+                            <block wx:elif="{{item.constella_id==4}}">
+                                <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=1)}}">
+                                    <image src="{{'../image/'+item.constella_id+'m.jpg'}}" ></image>
+                                </block> -->
+                                <view animation="{{click}}"  class="click-style" style="top:24.1%;left: 38%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="11">
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:26.8%;left: 64%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="9">
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:36.8%;left: 82.5%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="10">
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:52%;left: 34%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="8">
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                            </block>
+                            <block wx:elif="{{item.constella_id==5}}">
+                                <block wx:if="{{newindex==0}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Lm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:25%;left: 88%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="12">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                </block>
+                                <block wx:elif="{{newindex==1}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Rm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:19%;left: 11%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="13">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                </block>
+                            </block>
+                            <block wx:elif="{{item.constella_id==6}}">
+                                <block wx:if="{{newindex==0}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Lm.jpg'}}" ></image>
+                                    </block> -->
+                                </block>
+                                <block wx:elif="{{newindex==1}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Rm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:52%;left:0%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="15" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:58%;left:15%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="15" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:68%;left:53%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="14" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                </block>
+
+                            </block>
+                            <block wx:elif="{{item.constella_id==7}}">
+                                <block wx:if="{{newindex==0}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Lm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:58.5%;left: 47.5%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="17">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                </block>
+                                <block wx:elif="{{newindex==1}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Rm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:58%;left: 40.5%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="16">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                </block>
+                            </block>
+                            <block wx:elif="{{item.constella_id==8}}">
+                                <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=1)}}">
+                                    <image src="{{'../image/'+item.constella_id+'m.jpg'}}" ></image>
+                                </block> -->
+                                <view animation="{{click}}"  class="click-style" style="top:48.6%;left: 43.6%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="18">
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:31%;left:20.8%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="19" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:23.5%;left:32%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="20" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:33%;left:73.8%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="21" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                            </block>
+                            <block wx:elif="{{item.constella_id==9}}">
+                                <block wx:if="{{newindex==0}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Lm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:50%;left:20.5%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="23" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:62%;left:37%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="24" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:44.8%;left:87%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="22" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                </block>
+                                <block wx:elif="{{newindex==1}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Rm.jpg'}}" ></image>
+                                    </block> -->
+                                    
+                                    
+                                </block>
+
+                            </block>
+                            <block wx:elif="{{item.constella_id==10}}">
+                                <block wx:if="{{newindex==0}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Lm.jpg'}}" ></image>
+                                    </block> -->
+                                </block>
+                                
+                                <block wx:elif="{{newindex==1}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Rm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:39.8%;left:44%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="25" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                </block>
+                            </block>
+                            <block wx:elif="{{item.constella_id==11}}">
+
+                                <block wx:if="{{newindex==0}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Lm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:29%;left: 46%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="28">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:34%;left:88.7%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="26" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:41%;left:90.5%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="26" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                </block>
+                                <block wx:elif="{{newindex==1}}">
+                                    <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=2)}}">
+                                        <image src="{{'../image/'+item.constella_id+'Rm.jpg'}}" ></image>
+                                    </block> -->
+                                    <view animation="{{click}}"  class="click-style" style="top:34.2%;left: 16%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="26">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:42%;left:11.5%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="26" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:48.3%;left:1.5%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="29" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:12%;left: 5.5%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="27">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:35.9%;left:45.8%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="26" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:38%;left:64.5%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="26" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                    <view animation="{{click}}"  class="click-style" style="top:41.8%;left:37.8%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="26" >
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>
+                                </block>
+                            </block>
+                            <block wx:elif="{{item.constella_id==12}}">
+                                <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=1)}}">
+                                    <image src="{{'../image/'+item.constella_id+'m.jpg'}}" ></image>
+                                </block> -->
+                                <view animation="{{click}}"  class="click-style" style="top:32.5%;left:65.4%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="30" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:2.8%;left:10%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="31" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+   
+                            </block>
+                            <block wx:elif="{{item.constella_id==13}}">
+                                <!-- <block wx:if="{{!(imgLoad[item.constella_id]>=1)}}">
+                                    <image src="{{'../image/'+item.constella_id+'m.jpg'}}" ></image>
+                                </block> -->
+                                <view animation="{{click}}"  class="click-style" style="top:44%;left:29%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="34" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:49.5%;left:33.8%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="35" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:53.3%;left:44%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="33" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:56.8%;left:32%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="36" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+                                <view animation="{{click}}"  class="click-style" style="top:56.8%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="32" >
+                                    <image src="../image/star.png" lazy-load="true"></image>
+                                </view>
+   
+                            </block>
+                        </swiper-item>
+                    </block>
+                </swiper>
+            </swiper-item>
+        </block>
+    </swiper>
+    <!-- <swiper easing-function="easeOutCubic" bindtap="closeEverthing">
+            <block wx:for="{{constellaImgUrl}}" wx:key="id">
+                <swiper-item>
+                    <image src="{{item}}" bindload="imgOnload" ></image>
+                    <block wx:if="{{imgLoad==0}}">
+                        <image src="{{constellaImgSmallUrl}}"></image>
+                    </block>
+                    <block wx:if="{{constellaId==1}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[0]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view> 
+                    </block>
+                </swiper-item>
+            </block>
+    </swiper> -->
 </view>
+
+
+ <!-- <block wx:if="{{constellaId==1}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[0]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view> 
+                    </block>
+                    <block wx:elif="{{constellaId==2}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view> 
+                    </block>
+                    <block wx:elif="{{constellaId==3}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view> 
+                    </block>   
+                    <block wx:elif="{{constellaId==4}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view> 
+                    </block>   
+                    <block wx:elif="{{constellaId==5}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view> 
+                    </block>   
+                    <block wx:elif="{{constellaId==6}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view> 
+                    </block>   
+                    <block wx:elif="{{constellaId==7}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view>
+                    </block>   
+                    <block wx:elif="{{constellaId==8}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view>
+                    </block>
+                    <block wx:elif="{{constellaId==9}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view>
+                    </block>   
+                    <block wx:elif="{{constellaId==10}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view>
+                    </block>   
+                    <block wx:elif="{{constellaId==11}}">
+                        <view animation="{{click}}"  class="click-style" style="top:32.5%;left: 36%;" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="{{constellaId}}">
+                            <image src="../image/click-1.svg" ></image>
+                        </view>
+
+                        <view wx:if="{{textAreaIsOpen[constellaId-1]}}" class="text_area">
+                            <view animation="{{text_border}}" class="text_border"></view>
+                            <view class="text_wrap">
+                                <text>{{starName}}</text>
+                            </view>
+                        </view>
+
+                        <view animation="{{click}}"  class="click-style" style="top:30%;left:61%"bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="2" >
+                            <image src="../image/star.svg" ></image>
+                        </view>
+                        <view animation="{{click}}"  class="click-style" style="top:60%;left:59%" bindtap="test" >
+                            <image src="../image/star1.svg" ></image>
+                        </view>
+                    </block>    -->
+
+                    <!-- <view animation="{{index==0?click0:index==1?click1:index==2?click2:index==3?click3:index==4?click4:index==5?click5:index==6?click6:index==7?click7:index==8?click8:index==9?click9:index==10?click10:index==11?click11:index==12?click12:click13}}"  class="click-style" style="top:19.2%;left:70.2%" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindlongpress="handleLongPress" bindtap="handleClick" id="4">
+                                        <image src="../image/star.png" lazy-load="true"></image>
+                                    </view>  -->
+                         
