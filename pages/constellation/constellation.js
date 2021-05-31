@@ -10,50 +10,18 @@ Page({
         starName:"",
         starDescrib:"",
         constellaList:0,
-        flash:0
+        flash:0,
+        loadOK:0
     },
     onLoad: function (options) {
-        // let that = this
-        // //生成一个min-max之间的随机数
-        // const max = 1
-        // const min = 11
-        // var randomData = Math.floor(Math.random()*(max-min+1)+min)
-        // that.setData({
-        //     constellaId:randomData
-        // })
-        // wx.request({
-        //     url: 'https://dapeng.chat/Constella/Pic?Constella_id='+that.data.constellaId,
-        //     data: {},
-        //     header: {
-        //         'content-type': 'application/json'
-        //     },
-        //     method: 'GET',
-        //     dataType: 'json',
-        //     responseType: 'text',
-        //     success:(e) => {
-        //         console.log(e.data)
-        //         that.setData({
-        //             constellaImgSmallUrl:"../image/1m.jpg",
-        //             constellaImgUrl:e.data
-        //         })
-        //         that.setData({
-        //             timer: setInterval(function () {
-        //                 setTimeout(function () {
-        //                     console.log("开始")
-        //                     utils.fadeIn(that, 2000, 'click', 1)
-                            
-        //                 }, 500)
-        //                 clearInterval(that.data.timer)
-        //             }, 150)
-        //         })
-        //         that.flash()
-        //     }
-        // })
-        // console.log(that.data.constellaId)
-        
+        console.log(options)
+        wx.showLoading({
+            title: '加载中',
+            mask:'true'
+        })
         let that = this
         wx.request({
-          url: 'https://dapeng.chat/Constella/List',
+          url: 'https://dapeng.chat/Style?style='+options.style,
           data: {},
             header: {
                 'content-type': 'application/json'
@@ -74,7 +42,7 @@ Page({
                 }
                 that.setData({
                     constellaList:data,
-                    loadOK:1
+                    // loadOK:1
                 })
                 
                 that.flash('click0')
@@ -84,6 +52,7 @@ Page({
                 that.networkRequestFailed()
             }
         })
+        
 
 
         // 页面创建时执行
@@ -134,7 +103,7 @@ Page({
         });
     },
     flash:function(e){
-        console.log('flash'+e)
+        
         let that = this
         that.setData({
             flash: setInterval(function () {
@@ -162,14 +131,22 @@ Page({
     imgOnload:function(e){
 
         var arr = e.currentTarget.id.split(",")
+        console.log(arr)
         let that = this
         var l = e.currentTarget.id
         var data = that.data.imgLoad
         data[arr[0]][arr[1]] = 1
-        
+        console.log(data)
         that.setData({
             imgLoad:data
         })
+        if(arr[2]==0&&arr[1]==0){
+            wx.hideLoading()
+            
+        }
+    },
+    imgLoading:function(e){
+        wx.hideLoading()
     },
     //touch start
     handleTouchStart: function(e) {    
@@ -279,9 +256,6 @@ Page({
         // //     this.unFlash("click"+i)
         // // }
         // this.flash("click"+data)
-        
-        
-
     },
     networkRequestFailed:function(){
         wx.showModal({

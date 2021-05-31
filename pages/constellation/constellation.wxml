@@ -1,14 +1,14 @@
 <!-- <button bindtap="test">test</button> -->
 <view class="container">
-    <view wx:if="{{loadOK==0}}">加载中</view>
-    <swiper wx:if="{{loadOK==1}}"  vertical="true" easing-function="easeOutCubic" bindtap="closeEverthing" bindchange="closeEverthing2" >
-        <block wx:for="{{constellaList}}" wx:key="id" wx:for-index="index">
+    
+    <swiper   vertical="true" easing-function="easeOutCubic" bindtap="closeEverthing" bindchange="closeEverthing" >
+        <block  wx:for="{{constellaList}}" wx:key="id" wx:for-index="index">
             <swiper-item>
                 <swiper easing-function="easeOutCubic" bindtap="closeEverthing" bindchange="closeEverthing">
                     <block wx:for="{{item.constella_pic}}" wx:key="id" wx:for-item="newitem" wx:for-index="newindex">
                         <swiper-item>
-                            <image class="{{(imgLoad[item.constella_id][newindex]==1) ? 'active': 'unactive'}}" src="{{newitem}}" lazy-load="true" bindload="imgOnload" id="{{item.constella_id+','+newindex}}" ></image>
-                            <image wx:if="{{imgLoad[item.constella_id][newindex]==0}}" src="{{ '../image/'+item.constella_id+(newindex==0?'L':'R')+'m.jpg'}}" lazy-load="true" ></image>
+                            <image class="{{(imgLoad[item.constella_id][newindex]==1) ? 'active': 'unactive'}}" src="{{newitem}}" lazy-load="true" bindload="imgOnload" id="{{item.constella_id+','+newindex+','+index}}" ></image>
+                            <image wx:if="{{imgLoad[item.constella_id][newindex]==0}}" src="{{ '../image/'+item.constella_id+(newindex==0?'L':'R')+'m.jpg'}}" lazy-load="true" bindload="imgLoading" ></image>
                            
                             <!-- 下面是描述框 -->
                             <!-- textAreaIsOpen：点击星星时，textAreaIsOpen赋值为1，显示描述框 -->

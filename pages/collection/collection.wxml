@@ -1,0 +1,13 @@
+<view class="collection_page">
+    <view wx:if="{{!emptyColelction}}">
+        <block wx:for="{{collection}}" wx:key="star_id">
+            <view class="collection_item" bind:tap="goStar" id="{{item.star_id}}">
+                <image class="collection_img" src="{{item.star_pic}}" style="width:{{phoneW*0.8}}px;height:{{phoneH*0.8}}px" lazy-load="{{true}}" />
+                <view class="collection_text_wrap">
+                    <text class="collection_text">{{item.star_word1}}</text>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view wx:else style="color:darkgrey;font-family:'cursive';font-style:italic">还未驻留过星球~</view>
+</view>

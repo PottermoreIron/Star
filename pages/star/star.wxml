@@ -59,17 +59,23 @@
                 </view>
                 <view class="music_wrap">
                     <view animation="{{music_line1}}" class="music_line1"></view>
-                    <image animation="{{rocket}}" class="rocket" src="../../rocket.svg" />
+                    <image animation="{{rocket}}" class="rocket" src="../../music.svg" />
                     <view animation="{{music_line2}}" class="music_line2"></view>
                     <view class="song_info" animation="{{songInfo}}">
                         <text class="song_aut">{{songAuthor}}</text>
-                        <text class="song_name" decode="{{true}}">&nbsp;{{songName}}</text>
+                        <text class="song_name" decode="{{true}}">"{{songName}}"</text>
                     </view>
                 </view>
                 <view class="canvas_box" hidden="{{!isCanvasShow}}">
                     <image src="../../close.svg" class="close" bind:tap="closeCanvas" />
                     <canvas style="width:{{phoneW/1.5}}px;height:{{phoneH/1.5}}px;" canvas-id="poster_{{index}}" />
                     <button class="save_poster" plain="{{true}}" bind:tap="savePoster">保存</button>
+                </view>
+                <view class="input_page" hidden="{{!isEdit}}">
+                    <view class="input_wrap">
+                        <textarea value="{{canvasText}}" bindinput="textInput" placeholder="想说点什么" placeholder-class="textarea_placeholder"></textarea>
+                        <button bind:tap="comEdit" plain="{{true}}">留言</button>
+                    </view>
                 </view>
             </swiper-item>
         </block>

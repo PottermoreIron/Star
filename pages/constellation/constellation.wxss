@@ -39,7 +39,7 @@ image {
 }
 .text_area {
     width: 500rpx;
-    height: 600rpx;
+    height: 800rpx;
     position: absolute;
     top: 12%;
     padding: 50rpx;
@@ -62,4 +62,12 @@ image {
 }
 .unactive{
     opacity: 0;
+}
+.loading{
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    top:35%;
+    left: 35%;
+    z-index: 1;
 }

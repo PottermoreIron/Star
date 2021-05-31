@@ -1,29 +1,24 @@
 <view class="page_wrap">
-    <swiper>
-        <swiper-item>
-            <view class="to_page">
-                <image class="bkg_img" src="../../bkg.jpg" />
-                <view class="think_container">
-                    <view class="think" bindtap="goConstellation">
-                        <text class="think_test">随想</text>
-                    </view>
-                </view>
-                <view class="focus_container">
-                    <view class="focus">
-                        <text class="focus_test">专注</text>
-                    </view>
-                </view>
-                <view class="rest_container">
-                    <view class="rest">
-                        <text class="rest_test">休息</text>
-                    </view>
-                </view>
+    <view class="to_page">
+        <image class="bkg_img" src="../../bkg.jpg" />
+        <view class="think_container">
+            <view class="think" bindtap="goConstellationT">
+                <text class="think_test">随想</text>
             </view>
-        </swiper-item>
-        <swiper-item>
-            <view class="collection_page">
-                <view>收藏</view>
+        </view>
+        <view class="focus_container" bind:tap="goConstellationF">
+            <view class="focus">
+                <text class="focus_test">专注</text>
             </view>
-        </swiper-item>
-    </swiper>
+        </view>
+        <view class="rest_container" bind:tap="goConstellationR">
+            <view class="rest">
+                <text class="rest_test">休息</text>
+            </view>
+        </view>
+        <view class="collection_button">
+            <image class="rocket_img" src="../../rocket.svg" />
+            <button plain="{{true}}" bind:tap="goCollection">停留星球</button>
+        </view>
+    </view>
 </view>

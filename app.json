@@ -1,9 +1,14 @@
 {
+  "entryPagePath":"pages/home/home",
   "pages":[
-    "pages/home/home",
+    
     "pages/star/star", 
+
+    "pages/home/home",
     
     
+    
+    "pages/collection/collection",
     
     "pages/constellation/constellation"
     
@@ -13,7 +18,9 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Talking to the STAR",
     "navigationBarTextStyle":"black",
-    "navigationStyle": "custom"
+    "navigationStyle": "custom",  
+    "backgroundColor":"#00000000"
+    
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

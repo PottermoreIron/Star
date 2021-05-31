@@ -1,0 +1,40 @@
+.collection_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100rpx;
+
+}
+
+.collection_item {
+    padding-top: 70rpx;
+    position: relative;
+}
+
+.collection_text_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 80%;
+    height: 50%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    color: white;
+    font-family: cursive;
+    backdrop-filter: blur(10rpx);
+}
+
+.collection_text {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'cursive';
+    font-style: italic;
+}

@@ -1,14 +1,40 @@
+let app = getApp();
+
 Page({
     data: {
-        text: "HOME"
+        text: "HOME",
+        collection: [{
+            id: 0,
+            imgUrl: "../../1.jpg",
+            text: "test1"
+        }, {
+            id: 1,
+            imgUrl: "../../2.jpg",
+            text: "test1"
+        }, {
+            id: 2,
+            imgUrl: "../../3.jpg",
+            text: "test2"
+        }],
+        phoneW: "",
+        phoneH: "",
     },
     onLoad: function (options) {
         // 页面创建时执行
+        let that = this
+        wx.showLoading({
+            title: "登记船长中",
+            mask: true,
+            success: (result) => {
+
+            },
+            fail: () => {},
+            complete: () => {}
+        });
         wx.login({
             success(res) {
                 if (res.code) {
                     //发起网络请求
-                    console.log(res.code)
                     wx.request({
                         url: 'https://dapeng.chat/cis',
                         method: 'POST',
@@ -20,6 +46,8 @@ Page({
                         },
                         success(e) {
                             console.log(e.data)
+                            app.globalData.user_id = e.data
+                            wx.hideLoading();
                         }
                     })
                 } else {
@@ -27,6 +55,16 @@ Page({
                 }
             }
         })
+        wx.getSystemInfo({
+            success: (result) => {
+                that.setData({
+                    phoneW: result.windowWidth,
+                    phoneH: result.windowHeight
+                })
+            },
+            fail: () => {},
+            complete: () => {}
+        });
     },
     onShow: function () {
         // 页面出现在前台时执行
@@ -57,18 +95,31 @@ Page({
     },
     onTabItemTap(item) {
         // tab 点击时执行
-        console.log(item.index)
-        console.log(item.pagePath)
-        console.log(item.text)
     },
     // 事件响应函数
-    goConstellation: function () {
+    goConstellationT: function () {
         wx.navigateTo({
-            url: '/pages/constellation/constellation',
+            url: '/pages/constellation/constellation?style=1',
         })
     },
-    // 自由数据
-    customData: {
-        hi: 'MINA'
-    }
+    goConstellationF: function () {
+        wx.navigateTo({
+            url: '/pages/constellation/constellation?style=2',
+        })
+    },
+    goConstellationR: function () {
+        wx.navigateTo({
+            url: '/pages/constellation/constellation?style=3',
+        })
+    },
+    goCollection: function () {
+        wx.navigateTo({
+            url: '/pages/collection/collection',
+            success: (result) => {
+
+            },
+            fail: () => {},
+            complete: () => {}
+        });
+    },
 })

@@ -30,6 +30,6 @@ App({
         */
     },
     globalData: {
-        userInfo: null
+        user_id: null
     }
 })

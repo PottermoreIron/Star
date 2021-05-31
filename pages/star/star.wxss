@@ -1,3 +1,7 @@
+.container {
+    background-color: black;
+}
+
 swiper {
     width: 100%;
     height: 100%;
@@ -33,8 +37,9 @@ image {
     padding: 50rpx;
     line-height: 80rpx;
     font-style: italic;
-    font-family: monospace;
+    font-family: 'fangsong';
     font-weight: bold;
+    backdrop-filter: blur(10px);
 }
 
 .text_border {
@@ -45,6 +50,7 @@ image {
     top: -0rpx;
     border: solid 1rpx white;
     opacity: 0;
+    backdrop-filter: 10rpx;
 }
 
 
@@ -60,7 +66,7 @@ image {
     height: 2% !important;
     color: white !important;
     border-color: white !important;
-    font-weight: lighter !important;
+    font-weight: normal !important;
     font-size: medium !important;
     padding: 15rpx 18rpx 15rpx 18rpx;
 }
@@ -146,6 +152,9 @@ image {
     bottom: 1.5%;
     opacity: 0;
     font-size: small;
+    font-style: italic;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 
@@ -171,12 +180,44 @@ image {
 .save_poster {
     position: absolute;
     bottom: 8%;
-}
-
-.save_poster {
     color: white !important;
     border-color: white !important;
     width: 32% !important;
     height: 6% !important;
     line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input_page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: black
+}
+
+.input_wrap {
+    margin-top: 20%;
+}
+
+.input_wrap textarea {
+    padding-left: 10%;
+    padding-right: 10%;
+    width: 80%;
+}
+
+.input_wrap button {
+    border-color: rgb(48, 48, 48);
+    color: rgb(121, 121, 121);
+    font-weight: normal;
+    width: 70% !important;
+    height: 10% !important;
+    border-radius: 0 !important;
+    padding: 0
+}
+
+.textarea_placeholder {
+    color: darkgray
 }

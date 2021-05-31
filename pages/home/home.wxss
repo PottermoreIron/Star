@@ -1,34 +1,23 @@
-swiper {
-    width: 100%;
-    height: 100%;
-}
-
 .to_page {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+    font-family: 'serif';
+    font-style: italic;
 
 }
 
-.to_page image {
+.bkg_img {
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-
-.collection_page {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .page_wrap {
     height: 100%;
-    background-color: #000080;
+    background-color: #fff;
 }
 
 .think_container {
@@ -89,4 +78,36 @@ swiper {
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
+}
+
+.collection_button {
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+}
+
+.rocket_img {
+    width: 20%;
+    height: 72%;
+    position: absolute;
+}
+
+.collection_button button {
+    width: 30% !important;
+    height: 60% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 0;
+    border-color: white;
+    color: white;
+    left: -25%;
+    font-weight: normal;
+    font-size: medium;
+    font-family: 'cursive';
+    font-style: initial;
 }
